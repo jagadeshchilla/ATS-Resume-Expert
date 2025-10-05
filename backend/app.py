@@ -49,6 +49,13 @@ class PromptCategoriesResponse(BaseModel):
     available_categories: list
     descriptions: dict
 
+class ApiKeyValidationRequest(BaseModel):
+    api_key: str
+
+class ApiKeyValidationResponse(BaseModel):
+    valid: bool
+    message: str
+
 def get_response(job_description, resume_text, prompt, api_key=None):
     # Use provided API key or fallback to environment variable
     if api_key:
@@ -525,6 +532,46 @@ async def get_prompt_categories():
     )
 
 
+
+@app.post("/validate-api-key", response_model=ApiKeyValidationResponse)
+async def validate_api_key(request: ApiKeyValidationRequest):
+    """
+    Validate a Gemini API key by making a test request
+    """
+    try:
+        # Configure the API key
+        genai.configure(api_key=request.api_key)
+        
+        # Try to create a model instance to validate the key
+        model = genai.GenerativeModel("models/gemma-3-27b-it")
+        
+        # Make a simple test request
+        test_prompt = "Hello, this is a test. Please respond with 'API key is valid'."
+        response = model.generate_content([test_prompt])
+        
+        # If we get here without an exception, the API key is valid
+        return ApiKeyValidationResponse(
+            valid=True,
+            message="API key is valid"
+        )
+        
+    except Exception as e:
+        error_message = str(e)
+        if "API_KEY_INVALID" in error_message or "invalid" in error_message.lower():
+            return ApiKeyValidationResponse(
+                valid=False,
+                message="Invalid API key. Please check your Gemini API key."
+            )
+        elif "quota" in error_message.lower() or "limit" in error_message.lower():
+            return ApiKeyValidationResponse(
+                valid=False,
+                message="API key quota exceeded. Please check your Gemini API usage limits."
+            )
+        else:
+            return ApiKeyValidationResponse(
+                valid=False,
+                message=f"Error validating API key: {error_message}"
+            )
 
 @app.get("/action-verbs-reference")
 async def get_action_verbs_reference():
