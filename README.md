@@ -15,6 +15,12 @@
 
 </div>
 
+## Live Demo
+
+**🚀 [Try ATS Resume Expert Live](https://ats-resume-expert.vercel.app/)**
+
+Experience the full power of AI-driven resume analysis with our live demo. Upload your resume, paste a job description, and get instant comprehensive analysis and optimization recommendations.
+
 ## About ATS Resume Expert
 
 **ATS Resume Expert** is an intelligent resume analysis platform powered by Google's Gemini AI that helps job seekers optimize their resumes for Applicant Tracking Systems (ATS). Our system provides comprehensive analysis and actionable recommendations to improve resume compatibility with job requirements.
