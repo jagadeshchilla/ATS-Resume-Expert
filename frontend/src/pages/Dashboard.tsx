@@ -64,14 +64,6 @@ const Dashboard: React.FC = () => {
     setActiveSection(section);
   };
 
-  const handleBackToUpload = () => {
-    // Clear localStorage
-    localStorage.removeItem('jobDescription');
-    localStorage.removeItem('resumeFileName');
-    localStorage.removeItem('resumeFileData');
-    navigate('/');
-  };
-
   const sections = [
     { 
       id: 'overview', 
@@ -127,7 +119,6 @@ const Dashboard: React.FC = () => {
           sections={sections}
           activeSection={activeSection}
           onSectionChange={handleSectionChange}
-          onBackToUpload={handleBackToUpload}
         />
         
         <div className="dashboard-content">

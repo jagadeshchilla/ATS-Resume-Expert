@@ -251,6 +251,14 @@ const SkillsVisualization: React.FC<SkillsVisualizationProps> = ({
         position: 'bottom' as const,
       },
     },
+    layout: {
+      padding: {
+        top: 10,
+        bottom: 10,
+        left: 10,
+        right: 10,
+      },
+    },
   };
 
   const radarOptions = {
@@ -260,6 +268,14 @@ const SkillsVisualization: React.FC<SkillsVisualizationProps> = ({
       r: {
         beginAtZero: true,
         max: 100,
+      },
+    },
+    layout: {
+      padding: {
+        top: 10,
+        bottom: 10,
+        left: 10,
+        right: 10,
       },
     },
   };

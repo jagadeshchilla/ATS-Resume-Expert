@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { validateApiKey } from '../api/atsApi';
 
 const SettingsPage: React.FC = () => {
-  const navigate = useNavigate();
   const [apiKey, setApiKey] = useState('');
   const [isValidating, setIsValidating] = useState(false);
   const [validationMessage, setValidationMessage] = useState('');
@@ -71,20 +69,10 @@ const SettingsPage: React.FC = () => {
     localStorage.removeItem('gemini_api_key');
   };
 
-  const handleBackToUpload = () => {
-    navigate('/');
-  };
-
   return (
     <div className="settings-page">
       <div className="settings-container">
         <div className="settings-header">
-          <button className="back-button animate-slide-left" onClick={handleBackToUpload}>
-            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            Back to Upload
-          </button>
           <h1 className="settings-title">Settings</h1>
           <p className="settings-subtitle">Configure your API settings for resume analysis</p>
         </div>
