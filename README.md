@@ -1,39 +1,95 @@
 # ATS Resume Expert
 
-An AI-powered Applicant Tracking System (ATS) that analyzes resumes against job descriptions using Google's Gemini AI. Features a clean, minimal white-themed interface with a split-screen dashboard for seamless resume analysis.
+<div align="center">
+  <img src="image.png" alt="ATS Logo" width="200" height="200">
+</div>
 
-## 🎨 Design Features
+<div align="center">
 
-- **Clean Minimal White Theme**: Professional design with subtle gray accents
-- **Split Screen Layout**: Intuitive interface with input panel (40%) and results panel (60%)
-- **No Authentication Required**: Simple, straightforward user experience
-- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
-- **Drag & Drop Upload**: Easy file upload with visual feedback
-- **14 Analysis Types**: Comprehensive analysis options for different resume aspects
+[![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
+[![FastAPI](https://img.shields.io/badge/fastapi-109989?style=for-the-badge&logo=FASTAPI&logoColor=white)](https://fastapi.tiangolo.com)
+[![Google Gemini](https://img.shields.io/badge/Google%20Gemini-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white)](https://ai.google.dev)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com)
 
-## 🏗️ Architecture
+</div>
+
+## About ATS Resume Expert
+
+**ATS Resume Expert** is an intelligent resume analysis platform powered by Google's Gemini AI that helps job seekers optimize their resumes for Applicant Tracking Systems (ATS). Our system provides comprehensive analysis and actionable recommendations to improve resume compatibility with job requirements.
+
+### Key Benefits
+
+- **ATS Optimization**: Ensure your resume passes through ATS filters with keyword matching and formatting analysis
+- **Detailed Scoring**: Get section-wise scores (0-100) for Professional Summary, Technical Skills, Work Experience, and more
+- **Technical Skills Matching**: Comprehensive analysis of technical skills alignment with job requirements
+- **Experience Level Assessment**: Determine if your experience level matches the job requirements (Junior/Mid/Senior/Lead)
+- **Professional Enhancement**: Get specific recommendations to improve resume content and presentation
+- **Real-time Analysis**: Instant feedback with structured data parsing and visual results
+- **Action Verb Optimization**: Access to 200+ professional action verbs with repetition detection and replacement suggestions
+
+### Perfect For
+
+- **Job Seekers** looking to optimize their resumes for specific positions
+- **Career Changers** transitioning to new industries or roles
+- **Recent Graduates** creating their first professional resumes
+- **Experienced Professionals** updating their resumes for senior positions
+- **Recruiters** evaluating candidate resumes against job requirements
+
+## Architecture
+
+```mermaid
+graph TD
+    A[File Upload] --> B[PDF Processing]
+    B --> C[Gemini AI Analysis]
+    C --> D[4 Analysis Types]
+    D --> E[Results Display]
+    E --> F[Skills Visualization]
+```
 
 ### Backend (FastAPI + Python)
-- RESTful API with FastAPI
-- Google Gemini AI integration for resume analysis
-- PDF parsing with PyPDF2
-- 14 specialized analysis prompts
-- Action verbs database with 200+ professional verbs
+- **Framework**: FastAPI with automatic API documentation
+- **AI Integration**: Google Gemini AI for intelligent resume analysis
+- **File Processing**: PyPDF2 for PDF parsing and text extraction
+- **Analysis Engine**: 14 specialized analysis prompts for comprehensive evaluation
+- **Database**: Action verbs database with 200+ professional verbs
+- **API Features**: 
+  - RESTful endpoints with automatic validation
+  - File upload handling with multipart/form-data
+  - Error handling and logging
+  - CORS support for frontend integration
+  - Health check endpoints for monitoring
+- **Dependencies**: FastAPI, PyPDF2, python-multipart, python-dotenv, requests
 
 ### Frontend (React + TypeScript)
-- Modern React 19 with TypeScript
-- Clean component architecture
-- Axios for API communication
-- React Dropzone for file uploads
-- CSS Variables for consistent theming
+- **Framework**: React 19 with TypeScript for type safety
+- **Architecture**: Clean component-based architecture with separation of concerns
+- **API Integration**: Axios for HTTP requests with error handling
+- **File Upload**: React Dropzone for drag-and-drop file uploads
+- **Styling**: CSS Variables for consistent theming and easy customization
+- **Components**:
+  - Modular component structure (Navbar, InputPanel, ResultsPanel, etc.)
+  - Reusable UI components with TypeScript interfaces
+  - Responsive design with mobile-first approach
+- **Features**:
+  - Real-time loading states and progress indicators
+  - Copy-to-clipboard functionality
+  - Error boundary implementation
+  - Responsive grid layout system
+- **Dependencies**: React, TypeScript, Axios, React-Dropzone, CSS Modules
 
-## 📋 Prerequisites
+## Technology Stack
 
-- Python 3.8+
-- Node.js 14+
-- Google Gemini API Key
+```mermaid
+graph TD
+    A[Python] --> B[FastAPI]
+    C[React] --> D[TypeScript]
+    E[Gemini AI] --> F[PDF Processing]
+    G[Vercel] --> H[Deployment]
+```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Clone the Repository
 
@@ -78,164 +134,72 @@ npm start
 
 The frontend will open automatically at `http://localhost:3000`
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ats/
-├── backend/
-│   ├── app.py                          # Main FastAPI application
-│   ├── prompts.py                      # AI prompts and action verbs
-│   ├── requirements.txt                # Python dependencies
-│   ├── test_api.py                     # API tests
+├── backend/                            # Backend API Server
+│   ├── app.py                          # Main FastAPI application with all endpoints
+│   ├── prompts.py                      # AI prompts and action verbs database
+│   ├── requirements.txt                # Python dependencies and versions
+│   ├── test_api.py                     # API endpoint tests
 │   ├── .env                           # Environment variables (create this)
-│   └── instruction/                    # Reference images
+│   ├── venv/                          # Python virtual environment
+│   └── instruction/                    # Reference images and documentation
 │
-├── frontend/
-│   ├── public/                         # Static files
+├── frontend/                           # React Frontend Application
+│   ├── public/                         # Static assets (favicon, manifest, etc.)
+│   │   ├── index.html                  # HTML template
+│   │   ├── favicon.ico                 # Site icon
+│   │   └── manifest.json               # PWA manifest
 │   ├── src/
 │   │   ├── api/
-│   │   │   └── atsApi.ts              # Backend API integration
-│   │   ├── components/
-│   │   │   ├── Navbar.tsx             # Navigation bar
-│   │   │   ├── InputPanel.tsx         # Left panel - inputs
-│   │   │   ├── FileUpload.tsx         # File upload component
-│   │   │   └── ResultsPanel.tsx       # Right panel - results
-│   │   ├── types.ts                   # TypeScript types
-│   │   ├── App.tsx                    # Main app component
-│   │   ├── App.css                    # Application styles
-│   │   ├── index.tsx                  # Entry point
-│   │   └── index.css                  # Global styles
-│   ├── .env                           # Environment variables
-│   ├── package.json                   # Node dependencies
-│   └── README.md                      # Frontend documentation
+│   │   │   └── atsApi.ts              # Backend API integration and endpoints
+│   │   ├── components/                 # Reusable React components
+│   │   │   ├── Navbar.tsx             # Top navigation bar
+│   │   │   ├── SideNavbar.tsx         # Side navigation component
+│   │   │   ├── InputPanel.tsx         # Left panel for inputs
+│   │   │   ├── FileUpload.tsx         # Drag-and-drop file upload
+│   │   │   ├── ResultsPanel.tsx       # Right panel for analysis results
+│   │   │   ├── AnalysisSection.tsx    # Analysis type selection
+│   │   │   ├── SkillsVisualization.tsx # Skills visualization component
+│   │   │   └── Loader.tsx             # Loading spinner component
+│   │   ├── pages/                      # Page components
+│   │   │   ├── Dashboard.tsx          # Main dashboard page
+│   │   │   └── SettingsPage.tsx       # Settings and configuration
+│   │   ├── types.ts                   # TypeScript type definitions
+│   │   ├── App.tsx                    # Main application component
+│   │   ├── App.css                    # Application styles and theming
+│   │   ├── index.tsx                  # Application entry point
+│   │   └── index.css                  # Global CSS styles
+│   ├── build/                         # Production build output
+│   ├── node_modules/                  # Node.js dependencies
+│   ├── package.json                   # Node.js dependencies and scripts
+│   ├── package-lock.json              # Dependency lock file
+│   ├── tsconfig.json                  # TypeScript configuration
+│   └── .env                           # Frontend environment variables
 │
-└── README.md                          # This file
+├── image.png                          # Project logo and branding
+└── README.md                          # Project documentation
 ```
 
-## 🎯 Features
+## Features
 
 ### Analysis Types
 
-1. **Comprehensive Analysis** - Complete resume evaluation with match percentage
-2. **Summary Optimization** - Professional summary enhancement
-3. **Skills Optimization** - Skills section analysis and improvement
-4. **Work Experience** - Work experience descriptions enhancement
-5. **Education** - Education section optimization
-6. **Projects** - Project descriptions improvement
-7. **Certifications** - Certifications review and suggestions
-8. **Leadership** - Leadership qualities identification
-9. **Quantify Achievements** - Adding quantifiable metrics
-10. **Action Verbs** - Action verbs improvement and repetition detection
-11. **Bullet Points** - Bullet point formatting optimization
-12. **Tailor Resume** - Job-specific resume tailoring
-13. **Data Analysis** - Data analysis skills focus
-14. **Marketing** - Marketing experience analysis
-
-### Key Capabilities
-
-- ✅ PDF resume upload and parsing
-- ✅ Job description text input
-- ✅ AI-powered analysis using Google Gemini
-- ✅ Multiple analysis perspectives
-- ✅ Action verb optimization with 200+ professional verbs
-- ✅ Copy-to-clipboard functionality
-- ✅ Real-time loading states
-- ✅ Error handling and validation
-- ✅ Responsive design
-
-## 🎨 Design System
-
-### Color Palette
-
-| Color | Hex Code | Usage |
-|-------|----------|-------|
-| White | #FFFFFF | Main background |
-| Off-white | #FAFAFA | Secondary backgrounds |
-| Light Gray | #F9FAFB | Subtle accents |
-| Primary Blue | #3B82F6 | Interactive elements |
-| Success Green | #10B981 | Success states |
-| Warning Orange | #F59E0B | Warnings |
-| Error Red | #EF4444 | Errors |
-
-### Typography
-
-- **Font**: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI'
-- **Base Size**: 16px
-- **Line Height**: 1.5
-- **Weights**: 300, 400, 500, 600, 700
-
-### Spacing
-
-- **Base Unit**: 8px
-- **Scale**: 8px, 16px, 24px, 32px, 48px
-
-## 🔌 API Endpoints
-
-### Backend API
-
-- `GET /` - API status
-- `GET /health` - Health check
-- `POST /analyze-resume` - Analyze resume with file upload
-- `POST /analyze-resume-text` - Analyze resume with text input
-- `POST /analyze-specific-section` - Analyze specific resume section
-- `POST /analyze-action-verbs` - Enhanced action verb analysis
-- `GET /prompt-categories` - Get available analysis categories
-- `GET /action-verbs-reference` - Get action verbs database
-
-## 🧪 Testing
-
-### Backend Tests
-
-```bash
-cd backend
-python test_api.py
+```mermaid
+graph TD
+    A[Comprehensive Analysis] --> B[Summary Optimization]
+    B --> C[Skills Optimization]
+    C --> D[Work Experience]
 ```
 
-### Frontend Tests
+1. **Comprehensive Analysis** - Complete resume evaluation with technical skills matching, experience analysis, and overall match percentage
+2. **Summary Optimization** - Professional summary enhancement with job-specific keywords
+3. **Skills Optimization** - Skills section analysis and ATS compatibility improvement
+4. **Work Experience** - Work experience descriptions enhancement with detailed matching analysis
 
-```bash
-cd frontend
-npm test
-```
-
-## 🔧 Configuration
-
-### Backend Environment Variables
-
-Create a `.env` file in the `backend` directory:
-
-```env
-GEMINI_API_KEY=your_google_gemini_api_key
-```
-
-### Frontend Environment Variables
-
-Create a `.env` file in the `frontend` directory:
-
-```env
-REACT_APP_API_URL=http://localhost:8000
-```
-
-## 📦 Building for Production
-
-### Backend
-
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn app:app --host 0.0.0.0 --port 8000
-```
-
-### Frontend
-
-```bash
-cd frontend
-npm run build
-```
-
-The production build will be in the `frontend/build` directory.
-
-## 🚀 Deployment
+## Deployment
 
 ### Backend Deployment Options
 
@@ -250,25 +214,6 @@ The production build will be in the `frontend/build` directory.
 - **Netlify**: Drag and drop build folder
 - **AWS S3 + CloudFront**: Static hosting
 - **GitHub Pages**: Use `gh-pages` package
-
-## 🤝 Contributing
-
-This is a private project. For any issues or suggestions, please contact the development team.
-
-## 📄 License
-
-Proprietary - All rights reserved
-
-## 🙏 Acknowledgments
-
-- Google Gemini AI for resume analysis
-- FastAPI for the backend framework
-- React for the frontend framework
-- DC Action Verbs for Resumes for the comprehensive verb database
-
-## 📞 Support
-
-For support, please contact the development team or create an issue in the repository.
 
 ---
 
